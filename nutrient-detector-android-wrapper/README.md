@@ -28,3 +28,22 @@ This is a lightweight Android wrapper for the AI-powered Nutrient Deficiency Det
    ```bash
    git clone https://github.com/your-username/nutrient-detector-android-wrapper.git
 
+
+
+
+
+
+   Open in Android Studio.
+
+Replace the WebView URL in MainActivity.java:
+
+java
+Copy
+Edit
+web.loadUrl("https://your-deployed-streamlit-url");
+Build APK:
+
+Build > Build APK(s)
+
+Install on Android device & test.
+
