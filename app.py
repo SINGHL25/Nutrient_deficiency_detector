@@ -37,5 +37,23 @@ if uploaded_file:
         st.subheader(translate_text(result, selected_lang))
         st.success(translate_text(tip, selected_lang))
 
+import sqlite3
+import datetime
+
+# SQLite log function
+def log_result(image_name, prediction):
+    conn = sqlite3.connect("results.db")
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS predictions
+                 (timestamp TEXT, image_name TEXT, result TEXT)''')
+    c.execute("INSERT INTO predictions VALUES (?, ?, ?)",
+              (datetime.datetime.now().isoformat(), image_name, prediction))
+    conn.commit()
+    conn.close()
+
+# Log after prediction
+log_result(uploaded_file.name, prediction)
+
+
 st.markdown("---")
 st.caption("📌 Note: This is an AI-based assistive tool. Always consult a doctor for serious concerns.")
